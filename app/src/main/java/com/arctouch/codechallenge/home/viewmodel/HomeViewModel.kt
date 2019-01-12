@@ -16,12 +16,13 @@ class HomeViewModel @Inject constructor(
 
     val moviesResponseState = MutableLiveData<ViewState>()
     private var page: Long = 1L
+    private var totalPages: Int = -1
     private val movies = mutableListOf<Movie>()
 
-    fun getUpcomingMovies() {
-        if (movies.isNotEmpty()) {
+    fun getUpcomingMovies(nextPage: Boolean = false) {
+        if (movies.isNotEmpty() && !nextPage) {
             moviesResponseState.postValue(ViewState.Complete(movies))
-        } else {
+        } else if (hasNextPage()) {
             compositeDisposable.clear()
 
             val calls = Completable.concat(
@@ -29,7 +30,8 @@ class HomeViewModel @Inject constructor(
                     homeInteractor.getGenres(),
                     homeInteractor.upcomingMovies(page)
                         .doOnSuccess { movies ->
-                            if (page <= movies.totalPages) page.inc()
+                            totalPages = movies.totalPages
+                            if (page <= movies.totalPages) page = page.inc()
                             this.movies.addAll(movies.results)
                             moviesResponseState.postValue(ViewState.Complete(movies.results))
                         }.ignoreElement()
@@ -43,4 +45,6 @@ class HomeViewModel @Inject constructor(
                 .addToComposite(compositeDisposable)
         }
     }
+
+    private fun hasNextPage() = page <= totalPages || totalPages == -1
 }

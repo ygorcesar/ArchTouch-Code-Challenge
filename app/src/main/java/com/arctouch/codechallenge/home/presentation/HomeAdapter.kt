@@ -6,8 +6,7 @@ import com.arctouch.codechallenge.base.presentation.BaseRecyclerViewAdapter
 import com.arctouch.codechallenge.home.model.Movie
 import kotlinx.android.synthetic.main.movie_item.view.*
 
-class HomeAdapter(movies: List<Movie>) : BaseRecyclerViewAdapter<Movie>(
-    items = movies.toMutableList(),
+class HomeAdapter : BaseRecyclerViewAdapter<Movie>(
     layoutResId = R.layout.movie_item,
     bindView = { view, movie ->
 

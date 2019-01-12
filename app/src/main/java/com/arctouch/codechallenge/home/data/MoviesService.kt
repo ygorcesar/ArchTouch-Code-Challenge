@@ -13,7 +13,7 @@ interface MoviesService {
         @Query("api_key") apiKey: String,
         @Query("language") language: String = NetworkModule.DEFAULT_LANGUAGE,
         @Query("page") page: Long,
-        @Query("region") region: String = NetworkModule.DEFAULT_REGION
+        @Query("region") region: String? = null //REMOVED {region=BR}/ Set NULL is default, because currently is getting only 6 items and not have more than one page when BR is setted
     ): Single<BasePaginationRaw<MovieRawResponse>>
 
 }

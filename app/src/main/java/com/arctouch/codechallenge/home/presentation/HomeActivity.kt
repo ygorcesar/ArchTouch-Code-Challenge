@@ -15,7 +15,8 @@ import kotlinx.android.synthetic.main.home_activity.*
 class HomeActivity : BaseActivity() {
 
     override val layoutResId = R.layout.home_activity
-    lateinit var viewModel: HomeViewModel
+    private lateinit var viewModel: HomeViewModel
+    private val homeAdapter by lazy { HomeAdapter() }
 
     override fun onInit() {
         viewModel = provideViewModel(viewModelFactory) {
@@ -41,11 +42,20 @@ class HomeActivity : BaseActivity() {
 
     private fun showResults(movies: List<Movie>) {
         loading(false)
-        recyclerView?.adapter = HomeAdapter(movies)
+        recyclerView?.apply {
+            if (adapter == null) {
+                setLinearLayout()
+                setAdapter(homeAdapter)
+                addOnScrollListener { viewModel.getUpcomingMovies(nextPage = true) }
+            }
+        }
+        homeAdapter.addItems(movies)
     }
 
     override fun loading(isLoading: Boolean) {
-        super.loading(isLoading)
-        progressBar.isVisible = isLoading
+        when {
+            homeAdapter.getItems().isEmpty() -> progressBar.isVisible = isLoading
+            else -> recyclerView?.loading = isLoading
+        }
     }
 }
