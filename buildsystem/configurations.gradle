@@ -20,4 +20,9 @@ ext {
             dev : "\"https://api.themoviedb.org/3/\"",
             prod: "\"https://api.themoviedb.org/3/\"",
     ]
+
+    apiKey = [
+            dev : "\"1f54bd990f1cdfb230adb312546d765d\"",
+            prod: "\"1f54bd990f1cdfb230adb312546d765d\""
+    ]
 }
