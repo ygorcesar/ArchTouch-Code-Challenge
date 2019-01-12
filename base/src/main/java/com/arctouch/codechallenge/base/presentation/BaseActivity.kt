@@ -8,11 +8,14 @@ import com.arctouch.codechallenge.base.common.exception.HttpError
 import com.arctouch.codechallenge.base.common.exception.NetworkError
 import com.arctouch.codechallenge.base.common.exception.UnknownException
 import com.arctouch.codechallenge.base.di.base
+import io.reactivex.disposables.CompositeDisposable
 import timber.log.Timber
 
 abstract class BaseActivity : AppCompatActivity() {
 
     abstract val layoutResId: Int
+
+    val compositeDisposable by lazy { CompositeDisposable() }
 
     val viewModelFactory: ViewModelProvider.Factory by lazy {
         base().viewModelFactory
@@ -28,6 +31,11 @@ abstract class BaseActivity : AppCompatActivity() {
      * Function called onCreate Activity after setContentView
      * */
     abstract fun onInit()
+
+    override fun onDestroy() {
+        if (!compositeDisposable.isDisposed) compositeDisposable.clear()
+        super.onDestroy()
+    }
 
     /**
      * Check commons exception between application

@@ -24,8 +24,6 @@ class MoviesMapper @Inject constructor(
             if (title.isNullOrBlank()) addMissingParam("movieTitle")
 
             if (overview == null) addMissingParam("movieOverview")
-
-            if (releaseDate.isNullOrBlank()) addMissingParam("movieReleaseDate")
         }
     }
 
@@ -37,7 +35,7 @@ class MoviesMapper @Inject constructor(
             genres = genres.filter { genre -> rawItem.genreIds?.contains(genre.id) == true },
             posterPath = movieImageUrlBuilder.buildPosterUrl(rawItem.posterPath ?: ""),
             backdropPath = movieImageUrlBuilder.buildBackdropUrl(rawItem.backdropPath ?: ""),
-            releaseDate = rawItem.releaseDate!!
+            releaseDate = rawItem.releaseDate ?: ""
         )
     }
 

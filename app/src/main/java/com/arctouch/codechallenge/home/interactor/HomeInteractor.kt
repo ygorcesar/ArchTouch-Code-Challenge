@@ -2,6 +2,7 @@ package com.arctouch.codechallenge.home.interactor
 
 import com.arctouch.codechallenge.home.data.GenreRepository
 import com.arctouch.codechallenge.home.data.MoviesRepository
+import com.arctouch.codechallenge.manager.data.QueryParams
 import io.reactivex.Completable
 import javax.inject.Inject
 
@@ -12,5 +13,7 @@ class HomeInteractor @Inject constructor(
 
     fun getGenres(): Completable = genreRepository.getGenres()
 
-    fun upcomingMovies(page: Long) = moviesRepository.upcomingMovies(page)
+    fun upcomingMovies(queryParams: QueryParams) = moviesRepository.upcomingMovies(queryParams)
+
+    fun searchMovies(queryParams: QueryParams) = moviesRepository.searchMovies(queryParams)
 }

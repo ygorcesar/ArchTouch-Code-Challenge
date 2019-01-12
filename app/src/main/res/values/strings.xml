@@ -1,3 +1,8 @@
 <resources>
+
     <string name="movie_and_genres">%s - %s</string>
+
+    <string name="home_menu_search">Search</string>
+    <string name="home_hint_search_movies">Buscar filmes</string>
+
 </resources>

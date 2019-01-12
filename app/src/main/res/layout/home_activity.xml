@@ -8,14 +8,15 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@android:color/white">
 
         <androidx.appcompat.widget.Toolbar
+            android:id="@+id/homeToolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:layout_scrollFlags="scroll|enterAlways"
-            app:title="@string/app_name"
-            app:titleTextColor="@android:color/white"/>
+            app:title="@string/app_name"/>
 
     </com.google.android.material.appbar.AppBarLayout>
 

@@ -1,15 +1,14 @@
 package com.arctouch.codechallenge.home.data
 
-import com.arctouch.codechallenge.application.di.modules.NetworkModule
 import com.arctouch.codechallenge.base.common.exception.NeedFetchData
 import com.arctouch.codechallenge.base.common.network.NetworkHandler
 import com.arctouch.codechallenge.base.data.BaseRemoteRepository
 import com.arctouch.codechallenge.home.model.Genre
+import com.arctouch.codechallenge.manager.data.QueryParams
 import com.arctouch.codechallenge.manager.session.SessionManager
 import io.reactivex.Completable
 import io.reactivex.Single
 import javax.inject.Inject
-import javax.inject.Named
 
 class GenreRepository @Inject constructor(
     private val remote: GenreRepository.Remote,
@@ -55,12 +54,12 @@ class GenreRepository @Inject constructor(
     @Inject constructor(
         private val genresMapper: GenresMapper,
         private val genreService: GenreService,
-        @Named(NetworkModule.API_KEY_NAMED) private val apiKey: String,
+        private val queryParams: QueryParams,
         networkHandler: NetworkHandler
     ) : BaseRemoteRepository(networkHandler), Contract {
 
         override fun getGenres(): Single<List<Genre>> = request(genresMapper) {
-            genreService.genres(apiKey)
+            genreService.genres(queryParams.queryMap)
         }
     }
 }
