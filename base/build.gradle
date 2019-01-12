@@ -15,7 +15,7 @@ android {
         minSdkVersion androidConfig.minSdkVersion
         targetSdkVersion androidConfig.targetSdkVersion
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner androidConfig.testRunner
 
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
@@ -68,6 +68,10 @@ dependencies {
     // Moshi
     implementation commonDependencies.moshi
     kapt commonDependencies.moshiCodegen
+
+    // Glide to show images from web and caching
+    implementation(commonDependencies.glide) { exclude group: "com.android.support" }
+    kapt commonDependencies.glideProcessor
 
     // Timber
     implementation developmentDependencies.timber

@@ -148,10 +148,6 @@ dependencies {
     implementation commonDependencies.moshi
     kapt commonDependencies.moshiCodegen
 
-    // Glide to show images from web and caching
-    implementation(commonDependencies.glide) { exclude group: "com.android.support" }
-    kapt commonDependencies.glideProcessor
-
     // Hawk for secure Key-Value storage
     implementation commonDependencies.hawk
 
