@@ -12,7 +12,3 @@ inline fun <reified T> ViewState.Complete<*>?.getList(): List<T> {
     }
     return emptyList()
 }
-
-inline fun <reified T> ViewState.Complete<*>?.getPaginationItems(): List<T> {
-    return (this?.response as BasePagination<*>?)?.getItems() ?: emptyList()
-}
