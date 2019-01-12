@@ -40,6 +40,7 @@ class HomeActivity : BaseActivity() {
         }
         setSupportActionBar(homeToolbar)
         observeSearchQuery()
+        onSwipeToRefresh()
     }
 
     override fun onResume() {
@@ -69,31 +70,31 @@ class HomeActivity : BaseActivity() {
             if (adapter == null) {
                 setLinearLayout()
                 setAdapter(homeAdapter)
-                addOnScrollListener { requestNewPages() }
+                addOnScrollListener { getMovies(nextPage = true) }
             }
         }
         homeAdapter.addItems(movies)
     }
 
-    private fun requestNewPages() {
-        val querySearch = query.value ?: ""
+    private fun getMovies(
+        queryFilter: String? = null,
+        nextPage: Boolean = false,
+        clearItemsBeforeRequest: Boolean = false
+    ) {
+        if (clearItemsBeforeRequest) homeAdapter.clearItems()
+
+        val querySearch = queryFilter ?: query.value ?: ""
         when {
-            querySearch.length >= 3 -> viewModel.searchMovies(querySearch, nextPage = true)
-            else -> viewModel.getUpcomingMovies(nextPage = true)
+            querySearch.length >= 3 -> viewModel.searchMovies(querySearch, nextPage = nextPage)
+            else -> viewModel.getUpcomingMovies(
+                nextPage = nextPage,
+                clearItemsBeforeRequest = clearItemsBeforeRequest
+            )
         }
     }
 
     private fun onQueryChanged(query: String?) {
-        when {
-            query?.length ?: 0 >= 3 -> {
-                homeAdapter.clearItems()
-                viewModel.searchMovies(query)
-            }
-            else -> {
-                homeAdapter.clearItems()
-                viewModel.getUpcomingMovies(clearItemsBeforeRequest = true)
-            }
-        }
+        getMovies(queryFilter = query, clearItemsBeforeRequest = true)
     }
 
     private fun observeSearchQuery() {
@@ -126,8 +127,13 @@ class HomeActivity : BaseActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 
+    private fun onSwipeToRefresh() {
+        homeSwipeToRefresh.setOnRefreshListener { getMovies(clearItemsBeforeRequest = true) }
+    }
+
     override fun loading(isLoading: Boolean) {
         when {
+            homeSwipeToRefresh.isRefreshing -> homeSwipeToRefresh.isRefreshing = isLoading
             homeAdapter.getItems().isEmpty() -> progressBar.isVisible = isLoading
             else -> recyclerView?.loading = isLoading
         }

@@ -20,15 +20,22 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <com.arctouch.codechallenge.base.presentation.views.CustomRecyclerView
-        android:id="@+id/recyclerView"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/homeSwipeToRefresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:crv_padding_bottom="12dp"
-        app:crv_padding_top="12dp"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:itemCount="10"
-        tools:listitem="@layout/movie_item"/>
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <com.arctouch.codechallenge.base.presentation.views.CustomRecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:crv_padding_bottom="12dp"
+            app:crv_padding_top="12dp"
+            tools:itemCount="10"
+            tools:listitem="@layout/movie_item"/>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <ProgressBar
         android:id="@+id/progressBar"
