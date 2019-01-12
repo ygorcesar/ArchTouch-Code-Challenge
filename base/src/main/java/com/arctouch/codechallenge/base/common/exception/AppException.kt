@@ -37,3 +37,8 @@ class EssentialParamMissingException(
     missingParam: String,
     rawObject: Any
 ) : AppException("The params: $missingParam are missing in received object: $rawObject")
+
+/**
+ * Object used to identify that need fetch new data
+ * */
+object NeedFetchData : AppException("Need fetch data from remote repository")

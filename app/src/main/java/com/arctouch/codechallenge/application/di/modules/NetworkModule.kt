@@ -3,6 +3,8 @@ package com.arctouch.codechallenge.application.di.modules
 import com.arctouch.codechallenge.BuildConfig
 import com.arctouch.codechallenge.application.di.scopes.ApplicationScope
 import com.arctouch.codechallenge.base.common.exception.HttpError
+import com.arctouch.codechallenge.home.data.GenreService
+import com.arctouch.codechallenge.home.data.MoviesService
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
@@ -14,13 +16,21 @@ import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.create
 import timber.log.Timber
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
+import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
 class NetworkModule {
+
+    companion object {
+        const val API_KEY_NAMED = "apiKey"
+        const val DEFAULT_LANGUAGE = "pt-BR"
+        const val DEFAULT_REGION = "BR"
+    }
 
     @Provides
     @ApplicationScope
@@ -35,7 +45,6 @@ class NetworkModule {
             .addConverterFactory(converter)
             .client(httpClient)
             .build()
-
     }
 
     @Provides
@@ -47,6 +56,11 @@ class NetworkModule {
     fun provideBaseUrl(): String = BuildConfig.API_URL
 
     @Provides
+    @Named(API_KEY_NAMED)
+    @ApplicationScope
+    fun provideApiKey(): String = BuildConfig.API_KEY
+
+    @Provides
     @ApplicationScope
     fun provideConverter(moshi: Moshi): Converter.Factory = MoshiConverterFactory.create(moshi)
 
@@ -55,6 +69,14 @@ class NetworkModule {
     fun provideLogger(): HttpLoggingInterceptor {
         return HttpLoggingInterceptor(HttpLoggingInterceptor.Logger { message -> Timber.d(message); })
     }
+
+    @Provides
+    @ApplicationScope
+    fun provideGenreService(retrofit: Retrofit): GenreService = retrofit.create()
+
+    @Provides
+    @ApplicationScope
+    fun provideMoviesService(retrofit: Retrofit): MoviesService = retrofit.create()
 
     @Provides
     @ApplicationScope

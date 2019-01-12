@@ -51,6 +51,7 @@ abstract class BaseActivity : AppCompatActivity() {
                 body(appException)
             }
         }
+        loading(false)
     }
 
     /**

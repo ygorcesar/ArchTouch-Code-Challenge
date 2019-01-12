@@ -13,12 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity
-            android:name=".splash.SplashActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
-        </activity>
-
-        <activity android:name=".home.HomeActivity">
+        <activity android:name=".home.presentation.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <action android:name="android.intent.action.VIEW"/>

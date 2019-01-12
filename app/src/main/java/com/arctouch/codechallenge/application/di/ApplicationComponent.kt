@@ -3,6 +3,7 @@ package com.arctouch.codechallenge.application.di
 import android.content.Context
 import com.arctouch.codechallenge.application.di.modules.ApplicationModule
 import com.arctouch.codechallenge.application.di.modules.NetworkModule
+import com.arctouch.codechallenge.application.di.modules.ViewModelModule
 import com.arctouch.codechallenge.application.di.scopes.ApplicationScope
 import com.arctouch.codechallenge.base.di.BaseComponent
 import com.arctouch.codechallenge.base.di.BaseModule
@@ -20,6 +21,7 @@ fun app() = ApplicationComponent.INSTANCE
     modules = [
         ApplicationModule::class,
         BaseModule::class,
+        ViewModelModule::class,
         NetworkModule::class
     ]
 )

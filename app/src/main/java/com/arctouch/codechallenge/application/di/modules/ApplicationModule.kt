@@ -2,6 +2,8 @@ package com.arctouch.codechallenge.application.di.modules
 
 import android.app.Application
 import android.content.Context
+import com.arctouch.codechallenge.application.di.scopes.ApplicationScope
+import com.arctouch.codechallenge.home.data.MoviesRepository
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -14,5 +16,9 @@ class ApplicationModule(private val application: Application) {
     fun provideApplicationContext(): Context {
         return application
     }
+
+    @Provides
+    @ApplicationScope
+    fun provideMoviesRepository(dataSource: MoviesRepository.Remote): MoviesRepository = dataSource
 
 }
