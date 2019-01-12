@@ -1,10 +1,10 @@
 package com.arctouch.codechallenge.base.presentation
 
-import androidx.annotation.LayoutRes
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.LayoutRes
+import androidx.recyclerview.widget.RecyclerView
 
 open class BaseRecyclerViewAdapter<T>(
     private var items: MutableList<T> = mutableListOf(),
@@ -24,6 +24,8 @@ open class BaseRecyclerViewAdapter<T>(
         holder.bindView(getItem(position))
     }
 
+    fun getItems() = items
+
     fun setItems(items: MutableList<T>) {
         this.items = items
         notifyDataSetChanged()
@@ -34,6 +36,14 @@ open class BaseRecyclerViewAdapter<T>(
     fun addItem(item: T) {
         this.items.add(item)
         notifyItemInserted(itemCount)
+    }
+
+    fun addItems(items: List<T>) {
+        val currentCount = itemCount
+        this.items.addAll(items)
+        for (i in currentCount..itemCount) {
+            notifyItemInserted(i)
+        }
     }
 
     fun removeItem(position: Int) {
