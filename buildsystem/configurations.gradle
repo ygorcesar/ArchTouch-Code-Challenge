@@ -1,0 +1,23 @@
+ext {
+
+    def versionMajor = 1
+    def versionMinor = 0
+    def versionPatch = 0
+    def appVersionCode = versionMajor * 1000 + versionMinor * 100 + versionPatch
+
+    android = [
+            applicationId    : "com.arctouch.codechallenge",
+            buildToolsVersion: "28.0.3",
+            minSdkVersion    : 21,
+            targetSdkVersion : 28,
+            compileSdkVersion: 28,
+            testRunner       : "androidx.test.runner.AndroidJUnitRunner",
+            versionCode      : appVersionCode,
+            versionName      : "$versionMajor.$versionMinor.$versionPatch"
+    ]
+
+    endpoints = [
+            dev : "\"https://api.themoviedb.org/3/\"",
+            prod: "\"https://api.themoviedb.org/3/\"",
+    ]
+}

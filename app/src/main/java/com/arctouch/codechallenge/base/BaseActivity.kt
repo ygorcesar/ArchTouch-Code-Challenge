@@ -1,6 +1,6 @@
 package com.arctouch.codechallenge.base
 
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.arctouch.codechallenge.api.TmdbApi
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
