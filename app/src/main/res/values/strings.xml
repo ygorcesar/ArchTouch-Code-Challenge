@@ -16,5 +16,6 @@
         <item quantity="one">%1$d Hora</item>
         <item quantity="other">%1$d Horas</item>
     </plurals>
+    <string name="movie_details_validations_invalid_movie_id">Você acessou um filme inválido ou que não existe</string>
 
 </resources>

@@ -14,6 +14,7 @@ import com.arctouch.codechallenge.base.extensions.isVisible
 import com.arctouch.codechallenge.base.extensions.observe
 import com.arctouch.codechallenge.base.extensions.provideViewModel
 import com.arctouch.codechallenge.base.presentation.BaseActivity
+import com.arctouch.codechallenge.base.presentation.views.ErrorView
 import com.arctouch.codechallenge.home.viewmodel.HomeViewModel
 import com.arctouch.codechallenge.manager.NavigationManager
 import com.arctouch.codechallenge.movie.model.Movie
@@ -26,6 +27,7 @@ import java.util.concurrent.TimeUnit
 class HomeActivity : BaseActivity() {
 
     override val layoutResId = R.layout.home_activity
+    override val baseErrorView: ErrorView? get() = errorView.apply { setActionButtonClick { getMovies() } }
     private lateinit var viewModel: HomeViewModel
     private val homeAdapter by lazy { HomeAdapter(::onMovieClick) }
 

@@ -1,6 +1,7 @@
 package com.arctouch.codechallenge.base.extensions
 
 import android.view.View
+import androidx.annotation.StringRes
 import androidx.recyclerview.widget.RecyclerView
 
 var View?.isVisible: Boolean
@@ -23,3 +24,5 @@ fun androidx.recyclerview.widget.RecyclerView?.setLinearLayout(
         )
     }
 }
+
+fun View.getString(@StringRes stringId: Int): String = this.context.getString(stringId)

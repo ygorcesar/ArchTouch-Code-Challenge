@@ -48,6 +48,7 @@ dependencies {
 
     // Android
     implementation commonDependencies.appCompat
+    implementation commonDependencies.materialDesign
     implementation commonDependencies.supportRecyclerView
     implementation commonDependencies.constraintLayout
 

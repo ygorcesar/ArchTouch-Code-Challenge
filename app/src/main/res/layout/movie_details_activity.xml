@@ -182,5 +182,13 @@
 
         </FrameLayout>
 
+        <com.arctouch.codechallenge.base.presentation.views.ErrorView
+            android:id="@+id/errorView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/movieDetailsBackButton"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

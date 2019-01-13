@@ -6,6 +6,7 @@ import com.arctouch.codechallenge.base.data.ViewState
 import com.arctouch.codechallenge.base.data.getResponse
 import com.arctouch.codechallenge.base.extensions.*
 import com.arctouch.codechallenge.base.presentation.BaseActivity
+import com.arctouch.codechallenge.base.presentation.views.ErrorView
 import com.arctouch.codechallenge.movie.domain.MovieDetailsBusiness
 import com.arctouch.codechallenge.movie.model.MovieDetails
 import com.arctouch.codechallenge.movie.viewmodel.MovieDetailsViewModel
@@ -15,6 +16,8 @@ import kotlinx.android.synthetic.main.movie_details_activity.*
 class MovieDetailsActivity : BaseActivity() {
 
     override val layoutResId = R.layout.movie_details_activity
+    override val baseErrorView: ErrorView?
+        get() = errorView.apply { setActionButtonClick { viewModel.getMovieDetails(args.movieId) } }
 
     private lateinit var viewModel: MovieDetailsViewModel
     private val args by lazy { MovieDetailsActivityArgs.deserializeFrom(intent) }
@@ -39,7 +42,7 @@ class MovieDetailsActivity : BaseActivity() {
     private fun onResponseError(appException: AppException?) {
         checkResponseException(appException) { exception ->
             when (exception) {
-                MovieDetailsBusiness.MovieIdInvalid -> toast("Filme inválido!")
+                MovieDetailsBusiness.MovieIdInvalid -> errorView?.showError(subTitle = R.string.movie_details_validations_invalid_movie_id)
             }
         }
     }

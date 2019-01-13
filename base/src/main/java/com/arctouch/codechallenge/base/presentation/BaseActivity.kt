@@ -8,6 +8,7 @@ import com.arctouch.codechallenge.base.common.exception.HttpError
 import com.arctouch.codechallenge.base.common.exception.NetworkError
 import com.arctouch.codechallenge.base.common.exception.UnknownException
 import com.arctouch.codechallenge.base.di.base
+import com.arctouch.codechallenge.base.presentation.views.ErrorView
 import io.reactivex.disposables.CompositeDisposable
 import timber.log.Timber
 
@@ -16,6 +17,8 @@ abstract class BaseActivity : AppCompatActivity() {
     abstract val layoutResId: Int
 
     val compositeDisposable by lazy { CompositeDisposable() }
+
+    open val baseErrorView: ErrorView? = null
 
     val viewModelFactory: ViewModelProvider.Factory by lazy {
         base().viewModelFactory
@@ -57,6 +60,7 @@ abstract class BaseActivity : AppCompatActivity() {
             }
             else -> {
                 body(appException)
+                baseErrorView?.showError()
             }
         }
         loading(false)
@@ -65,17 +69,19 @@ abstract class BaseActivity : AppCompatActivity() {
     /**
      * Function called when handled a Http generic exception
      */
-    open fun onHttpError() {}
+    open fun onHttpError() {
+        baseErrorView?.showError()
+    }
 
     /**
      * Function called when there is no internet connection
      */
     open fun onNetworkWithoutConnection() {
-
+        baseErrorView?.showConnectionError()
     }
 
     open fun onUnknownError() {
-
+        baseErrorView?.showError()
     }
 
     open fun loading(isLoading: Boolean) {
