@@ -53,4 +53,11 @@
         android:visibility="gone"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
+    <com.arctouch.codechallenge.base.presentation.views.EmptyView
+        android:id="@+id/emptyView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -5,4 +5,6 @@
     <string name="error_try_again">Tentar novamente</string>
     <string name="error_no_internet_connection_subtitle">você está sem conexão com a internet, verifique sua rede e tente novamente</string>
 
+    <string name="empty_view_no_information_found">Nenhuma informação encontrada...</string>
+
 </resources>

@@ -3,11 +3,13 @@ package com.arctouch.codechallenge.base.presentation
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.arctouch.codechallenge.base.R
 import com.arctouch.codechallenge.base.common.exception.AppException
 import com.arctouch.codechallenge.base.common.exception.HttpError
 import com.arctouch.codechallenge.base.common.exception.NetworkError
 import com.arctouch.codechallenge.base.common.exception.UnknownException
 import com.arctouch.codechallenge.base.di.base
+import com.arctouch.codechallenge.base.presentation.views.EmptyView
 import com.arctouch.codechallenge.base.presentation.views.ErrorView
 import io.reactivex.disposables.CompositeDisposable
 import timber.log.Timber
@@ -19,6 +21,7 @@ abstract class BaseActivity : AppCompatActivity() {
     val compositeDisposable by lazy { CompositeDisposable() }
 
     open val baseErrorView: ErrorView? = null
+    open val baseEmptyView: EmptyView? = null
 
     val viewModelFactory: ViewModelProvider.Factory by lazy {
         base().viewModelFactory
@@ -85,6 +88,22 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     open fun loading(isLoading: Boolean) {
+        if (isLoading) hideEmptyView()
+    }
 
+    open fun toggleEmptyView(items: List<Any>) {
+        if (items.isEmpty()) showEmptyView() else hideEmptyView()
+    }
+
+    open fun showEmptyView(
+        title: Int = R.string.action_error_ops,
+        subTitle: Int = R.string.empty_view_no_information_found
+    ) {
+        loading(false)
+        baseEmptyView?.show(title, subTitle)
+    }
+
+    open fun hideEmptyView() {
+        baseEmptyView?.hide()
     }
 }
