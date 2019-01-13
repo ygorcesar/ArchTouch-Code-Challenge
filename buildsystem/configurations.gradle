@@ -11,7 +11,7 @@ ext {
             minSdkVersion    : 21,
             targetSdkVersion : 28,
             compileSdkVersion: 28,
-            testRunner       : "androidx.test.runner.AndroidJUnitRunner",
+            testRunner       : "com.arctouch.codechallenge.base.EspressoTestRunner",
             versionCode      : appVersionCode,
             versionName      : "$versionMajor.$versionMinor.$versionPatch"
     ]

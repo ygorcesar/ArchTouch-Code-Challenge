@@ -16,9 +16,7 @@ class GenreRepository @Inject constructor(
 ) {
 
     interface Contract {
-
         fun getGenres(): Single<List<Genre>>
-
     }
 
     interface LocalContract : Contract {

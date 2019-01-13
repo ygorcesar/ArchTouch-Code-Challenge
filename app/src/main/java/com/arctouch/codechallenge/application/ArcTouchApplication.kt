@@ -12,7 +12,7 @@ import com.arctouch.codechallenge.base.di.BaseComponent
 import com.orhanobut.hawk.Hawk
 import timber.log.Timber
 
-class ArcTouchApplication : Application() {
+open class ArcTouchApplication : Application() {
 
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base)

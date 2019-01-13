@@ -9,9 +9,11 @@ import com.arctouch.codechallenge.base.presentation.BaseViewModel
 import com.arctouch.codechallenge.home.interactor.HomeInteractor
 import com.arctouch.codechallenge.manager.data.QueryParams
 import com.arctouch.codechallenge.movie.model.Movie
+import com.arctouch.codechallenge.testing.OpenForTesting
 import io.reactivex.Completable
 import javax.inject.Inject
 
+@OpenForTesting
 class HomeViewModel @Inject constructor(
     private val homeInteractor: HomeInteractor,
     private val queryParams: QueryParams

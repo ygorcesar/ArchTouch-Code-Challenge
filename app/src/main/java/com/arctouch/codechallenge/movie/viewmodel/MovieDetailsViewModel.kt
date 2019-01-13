@@ -6,8 +6,10 @@ import com.arctouch.codechallenge.base.extensions.addToComposite
 import com.arctouch.codechallenge.base.extensions.observeOnComputation
 import com.arctouch.codechallenge.base.presentation.BaseViewModel
 import com.arctouch.codechallenge.movie.domain.MovieDetailsInteractor
+import com.arctouch.codechallenge.testing.OpenForTesting
 import javax.inject.Inject
 
+@OpenForTesting
 class MovieDetailsViewModel @Inject constructor(
     private val movieDetailsInteractor: MovieDetailsInteractor
 ) : BaseViewModel() {

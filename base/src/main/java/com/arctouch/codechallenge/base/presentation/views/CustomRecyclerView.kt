@@ -38,6 +38,8 @@ class CustomRecyclerView @JvmOverloads constructor(
         appearance.recycle()
     }
 
+    val recyclerView: RecyclerView get() = customRecyclerView
+
     val layoutManager: LinearLayoutManager? get() = (customRecyclerView.layoutManager as LinearLayoutManager?)
 
     fun <T> setAdapter(adapter: BaseRecyclerViewAdapter<T>) {

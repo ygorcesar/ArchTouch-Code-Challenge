@@ -66,7 +66,7 @@ class MovieDetailsActivity : BaseActivity() {
         loading(false)
     }
 
-    private fun getMovieDuration(movieDetails: MovieDetails): String {
+    fun getMovieDuration(movieDetails: MovieDetails): String {
         val durationHour = if (movieDetails.durationHour > 0)
             resources.getQuantityString(
                 R.plurals.movie_details_duration_hour,

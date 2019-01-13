@@ -20,7 +20,6 @@ import com.arctouch.codechallenge.home.viewmodel.HomeViewModel
 import com.arctouch.codechallenge.manager.NavigationManager
 import com.arctouch.codechallenge.movie.model.Movie
 import io.reactivex.subjects.PublishSubject
-import kotlinx.android.synthetic.main.custom_recycler_view.*
 import kotlinx.android.synthetic.main.home_activity.*
 import timber.log.Timber
 import java.util.concurrent.TimeUnit
@@ -34,7 +33,7 @@ class HomeActivity : BaseActivity() {
     override val baseEmptyView: EmptyView? get() = emptyView
 
     private lateinit var viewModel: HomeViewModel
-    private val homeAdapter by lazy { HomeAdapter(::onMovieClick) }
+    private val homeAdapter = HomeAdapter(::onMovieClick)
 
     private var savedRecyclerLayoutState: Parcelable? = null
     private val searchTextObservable = PublishSubject.create<String>()
@@ -55,16 +54,14 @@ class HomeActivity : BaseActivity() {
     override fun onResume() {
         super.onResume()
         savedRecyclerLayoutState?.let {
-            customRecyclerView.layoutManager?.onRestoreInstanceState(it)
+            recyclerView.layoutManager?.onRestoreInstanceState(it)
         }
     }
 
     private fun onMoviesResponse(viewState: ViewState?) {
         when (viewState) {
             ViewState.Loading -> loading(true)
-            is ViewState.Complete<*> -> {
-                showResults(viewState.getList())
-            }
+            is ViewState.Complete<*> -> showResults(viewState.getList())
             else -> loading(false)
         }
     }
@@ -157,7 +154,7 @@ class HomeActivity : BaseActivity() {
         super.onSaveInstanceState(outState)
         outState?.putParcelable(
             KEY_RECYCLER_VIEW_STATE,
-            customRecyclerView.layoutManager?.onSaveInstanceState()
+            recyclerView.layoutManager?.onSaveInstanceState()
         )
     }
 
