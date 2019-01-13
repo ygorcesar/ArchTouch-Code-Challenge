@@ -13,53 +13,64 @@
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary">
 
+        <LinearLayout
+            android:id="@+id/movieDetailsTopContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/margin_min">
+
+            <ImageView
+                android:id="@+id/movieDetailsBackButton"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:importantForAccessibility="no"
+                android:padding="@dimen/margin_min"
+                app:srcCompat="@drawable/ic_arrow_back"/>
+
+            <TextView
+                android:id="@+id/movieDetailsTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/margin"
+                android:fontFamily="sans-serif-medium"
+                android:textColor="@android:color/white"
+                android:textSize="22sp"
+                tools:text="Black Hawk Down"/>
+
+        </LinearLayout>
+
         <ImageView
-            android:id="@+id/movieDetailsBackButton"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="@dimen/margin"
-            android:layout_marginTop="@dimen/margin"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?attr/selectableItemBackgroundBorderless"
-            android:importantForAccessibility="no"
-            android:padding="@dimen/margin_min"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_arrow_back"/>
-
-        <TextView
-            android:id="@+id/movieDetailsTitle"
+            android:id="@+id/movieDetailsBackdropImage"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin"
-            android:layout_marginTop="@dimen/margin_min"
-            android:layout_marginEnd="@dimen/margin"
-            android:fontFamily="sans-serif-medium"
-            android:textColor="@android:color/white"
-            android:textSize="22sp"
+            android:layout_height="200dp"
+            android:importantForAccessibility="no"
+            android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/movieDetailsBackButton"
-            app:layout_constraintTop_toTopOf="@+id/movieDetailsBackButton"
-            tools:text="Black Hawk Down"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/movieDetailsTopContainer"
+            tools:src="@drawable/ic_image_placeholder"/>
 
-        <androidx.constraintlayout.widget.Barrier
-            android:id="@+id/movieDetailsTopBarrier"
+        <Space
+            android:id="@+id/movieDetailsBackdropSpace"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:barrierDirection="bottom"
-            app:constraint_referenced_ids="movieDetailsBackButton,movieDetailsTitle"/>
+            android:layout_height="48dp"
+            app:layout_constraintBottom_toBottomOf="@id/movieDetailsBackdropImage"/>
 
         <ImageView
             android:id="@+id/movieDetailsImage"
             android:layout_width="154dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin"
-            android:layout_marginTop="@dimen/margin"
             android:importantForAccessibility="no"
             android:scaleType="fitCenter"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/movieDetailsTopBarrier"
+            app:layout_constraintTop_toTopOf="@id/movieDetailsBackdropSpace"
+            tools:layout_height="192dp"
             tools:src="@drawable/ic_image_placeholder"/>
 
         <ImageView
@@ -67,11 +78,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin"
-            android:layout_marginTop="@dimen/margin_min"
+            android:layout_marginTop="@dimen/margin"
             android:contentDescription="@string/content_description_rating"
             android:tint="@color/colorAccent"
             app:layout_constraintStart_toEndOf="@id/movieDetailsImage"
-            app:layout_constraintTop_toTopOf="@id/movieDetailsImage"
+            app:layout_constraintTop_toBottomOf="@+id/movieDetailsBackdropImage"
             app:srcCompat="@drawable/ic_stars"/>
 
         <TextView
@@ -173,7 +184,7 @@
             android:background="@color/colorPrimary"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/movieDetailsBackButton">
+            app:layout_constraintTop_toBottomOf="@id/movieDetailsTopContainer">
 
             <ProgressBar
                 android:layout_width="wrap_content"
@@ -188,7 +199,7 @@
             android:layout_height="0dp"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/movieDetailsBackButton"/>
+            app:layout_constraintTop_toBottomOf="@id/movieDetailsTopContainer"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

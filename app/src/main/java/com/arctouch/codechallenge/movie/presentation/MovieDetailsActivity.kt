@@ -49,6 +49,7 @@ class MovieDetailsActivity : BaseActivity() {
 
     private fun showMovieDetails(movieDetails: MovieDetails) {
         movieDetailsImage.loadImage(movieDetails.posterPath)
+        movieDetailsBackdropImage.loadImage(movieDetails.backdropPath)
         movieDetailsTitle.text = movieDetails.title
         movieDetailsOverview.text = movieDetails.overview
         movieDetailsRating.text = movieDetails.rating.toString()

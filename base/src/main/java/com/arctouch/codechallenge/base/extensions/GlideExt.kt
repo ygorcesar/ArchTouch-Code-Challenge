@@ -11,7 +11,7 @@ fun ImageView?.loadImage(
     this?.apply {
         GlideApp.with(this)
             .load(url)
-            .placeholder(R.drawable.ic_image_placeholder)
+            .error(R.drawable.ic_image_placeholder)
             .apply {
                 if (!withAnimate) dontAnimate()
             }
