@@ -26,22 +26,25 @@ interface ActivityArgs {
      * @param finishCurrent If true finish the current activity
      */
     fun launch(
-        context: Context,
+        context: Context?,
         finishCurrent: Boolean = false,
         withTransition: Boolean = false,
         vararg elements: Pair<View, String> = emptyArray()
     ) {
-        val intent = intent(context)
-        if (withTransition) {
-            if (context is Activity) {
-                val options = ActivityOptionsCompat.makeSceneTransitionAnimation(context, *elements)
-                context.startActivity(intent, options.toBundle())
+        context?.let {
+            val intent = intent(context)
+            if (withTransition) {
+                if (context is Activity) {
+                    val options =
+                        ActivityOptionsCompat.makeSceneTransitionAnimation(context, *elements)
+                    context.startActivity(intent, options.toBundle())
+                }
+            } else {
+                context.startActivity(intent)
             }
-        } else {
-            context.startActivity(intent)
-        }
-        if (finishCurrent) {
-            (context as AppCompatActivity).finish()
+            if (finishCurrent) {
+                (context as AppCompatActivity).finish()
+            }
         }
     }
 }

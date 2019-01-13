@@ -4,7 +4,7 @@ import com.arctouch.codechallenge.BuildConfig
 import com.arctouch.codechallenge.application.di.scopes.ApplicationScope
 import com.arctouch.codechallenge.base.common.exception.HttpError
 import com.arctouch.codechallenge.home.data.GenreService
-import com.arctouch.codechallenge.home.data.MoviesService
+import com.arctouch.codechallenge.movie.data.MoviesService
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides

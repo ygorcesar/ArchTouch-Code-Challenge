@@ -6,6 +6,10 @@ sealed class ViewState {
     data class Complete<T>(val response: T) : ViewState()
 }
 
+inline fun <reified T> ViewState.Complete<*>?.getResponse(): T {
+    return (this?.response as T)
+}
+
 inline fun <reified T> ViewState.Complete<*>?.getList(): List<T> {
     (this?.response as List<*>?)?.filterIsInstance(T::class.java)?.let {
         return it

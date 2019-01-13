@@ -14,8 +14,9 @@ import com.arctouch.codechallenge.base.extensions.isVisible
 import com.arctouch.codechallenge.base.extensions.observe
 import com.arctouch.codechallenge.base.extensions.provideViewModel
 import com.arctouch.codechallenge.base.presentation.BaseActivity
-import com.arctouch.codechallenge.home.model.Movie
 import com.arctouch.codechallenge.home.viewmodel.HomeViewModel
+import com.arctouch.codechallenge.manager.NavigationManager
+import com.arctouch.codechallenge.movie.model.Movie
 import io.reactivex.subjects.PublishSubject
 import kotlinx.android.synthetic.main.custom_recycler_view.*
 import kotlinx.android.synthetic.main.home_activity.*
@@ -26,7 +27,8 @@ class HomeActivity : BaseActivity() {
 
     override val layoutResId = R.layout.home_activity
     private lateinit var viewModel: HomeViewModel
-    private val homeAdapter by lazy { HomeAdapter() }
+    private val homeAdapter by lazy { HomeAdapter(::onMovieClick) }
+
     private var savedRecyclerLayoutState: Parcelable? = null
     private val searchTextObservable = PublishSubject.create<String>()
     private val query = MutableLiveData<String>()
@@ -137,6 +139,10 @@ class HomeActivity : BaseActivity() {
             homeAdapter.getItems().isEmpty() -> progressBar.isVisible = isLoading
             else -> recyclerView?.loading = isLoading
         }
+    }
+
+    private fun onMovieClick(movie: Movie) {
+        NavigationManager.goToMovieDetails(this, movie.id)
     }
 
     override fun onSaveInstanceState(outState: Bundle?) {

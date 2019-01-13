@@ -1,8 +1,10 @@
 package com.arctouch.codechallenge.base.extensions
 
+import android.app.Activity
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
+import android.widget.Toast
 import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
 
@@ -16,3 +18,6 @@ val Context.networkInfo: NetworkInfo?
 
 
 fun Context.getColorRes(@ColorRes colorResId: Int) = ContextCompat.getColor(this, colorResId)
+
+fun Activity.toast(msg: String, duration: Int = Toast.LENGTH_SHORT) =
+    Toast.makeText(this, msg, duration).show()

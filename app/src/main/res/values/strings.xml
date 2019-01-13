@@ -2,7 +2,19 @@
 
     <string name="movie_and_genres">%s - %s</string>
 
+    <string name="content_description_duration">Relógio de duração</string>
+    <string name="content_description_rating">Estrela de avaliação</string>
+
     <string name="home_menu_search">Search</string>
     <string name="home_hint_search_movies">Buscar filmes</string>
+
+    <string name="movie_details_genres_label">Gêneros</string>
+    <string name="movie_details_overview_label">Sinopse e Detalhes</string>
+    <string name="movie_details_duration_hour_and_minutes">%1$s e %2$s</string>
+    <string name="movie_details_duration_minutes">%1$d min</string>
+    <plurals name="movie_details_duration_hour">
+        <item quantity="one">%1$d Hora</item>
+        <item quantity="other">%1$d Horas</item>
+    </plurals>
 
 </resources>

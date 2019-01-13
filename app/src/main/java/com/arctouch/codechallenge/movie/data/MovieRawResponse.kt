@@ -1,11 +1,11 @@
-package com.arctouch.codechallenge.home.data
+package com.arctouch.codechallenge.movie.data
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class MovieRawResponse(
-    @Json(name = "id") val id: Int?,
+    @Json(name = "id") val id: Long?,
     @Json(name = "title") val title: String?,
     @Json(name = "overview") val overview: String?,
     @Json(name = "genre_ids") val genreIds: List<Int>?,

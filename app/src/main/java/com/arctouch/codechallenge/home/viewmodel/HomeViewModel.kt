@@ -7,8 +7,8 @@ import com.arctouch.codechallenge.base.extensions.addToComposite
 import com.arctouch.codechallenge.base.extensions.observeOnComputation
 import com.arctouch.codechallenge.base.presentation.BaseViewModel
 import com.arctouch.codechallenge.home.interactor.HomeInteractor
-import com.arctouch.codechallenge.home.model.Movie
 import com.arctouch.codechallenge.manager.data.QueryParams
+import com.arctouch.codechallenge.movie.model.Movie
 import io.reactivex.Completable
 import javax.inject.Inject
 

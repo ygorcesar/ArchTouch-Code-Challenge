@@ -1,10 +1,10 @@
-package com.arctouch.codechallenge.home.data
+package com.arctouch.codechallenge.movie.data
 
 import com.arctouch.codechallenge.base.data.BasePaginationMapper
-import com.arctouch.codechallenge.home.model.Movie
 import com.arctouch.codechallenge.manager.LoggerManager
 import com.arctouch.codechallenge.manager.MovieImageUrlBuilder
 import com.arctouch.codechallenge.manager.session.SessionManager
+import com.arctouch.codechallenge.movie.model.Movie
 import javax.inject.Inject
 
 class MoviesMapper @Inject constructor(
