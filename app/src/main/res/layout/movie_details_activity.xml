@@ -80,7 +80,6 @@
             android:layout_marginStart="@dimen/margin"
             android:layout_marginTop="@dimen/margin"
             android:contentDescription="@string/content_description_rating"
-            android:tint="@color/colorAccent"
             app:layout_constraintStart_toEndOf="@id/movieDetailsImage"
             app:layout_constraintTop_toBottomOf="@+id/movieDetailsBackdropImage"
             app:srcCompat="@drawable/ic_stars"/>
@@ -105,7 +104,6 @@
             android:layout_marginStart="@dimen/margin"
             android:layout_marginTop="@dimen/margin_min"
             android:contentDescription="@string/content_description_duration"
-            android:tint="@color/colorAccent"
             app:layout_constraintStart_toEndOf="@id/movieDetailsImage"
             app:layout_constraintTop_toBottomOf="@id/movieDetailsRatingIcon"
             app:srcCompat="@drawable/ic_time"/>

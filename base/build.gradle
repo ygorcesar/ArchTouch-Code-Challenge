@@ -2,6 +2,12 @@ apply plugin: 'com.android.feature'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-allopen'
+
+allOpen {
+    // allows mocking for classes w/o directly opening them for release builds
+    annotation "com.arctouch.codechallenge.testing.OpenForTesting"
+}
 
 android {
     def androidConfig = rootProject.ext.android

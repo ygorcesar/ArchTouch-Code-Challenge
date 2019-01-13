@@ -15,6 +15,8 @@ subprojects {
                     "org.jetbrains.kotlin:kotlin-stdlib:${kotlin_version}",
                     "org.jetbrains.kotlin:kotlin-reflect:${kotlin_version}",
             ]
+            force 'net.bytebuddy:byte-buddy:1.8.22'
+            force 'net.bytebuddy:byte-buddy-agent:1.8.22'
         }
     }
 }
@@ -54,8 +56,8 @@ ext {
     espresso = '3.1.1'
     daggerMock = '0.8.4'
     junit = '1.0.0'
-    mockito = '2.17.0'
-    barista = '2.7.0'
+    mockito = '2.23.4'
+    barista = '2.7.1'
 
     // Development
     timber = '4.7.1'
