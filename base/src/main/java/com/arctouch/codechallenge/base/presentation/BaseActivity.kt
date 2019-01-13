@@ -11,6 +11,7 @@ import com.arctouch.codechallenge.base.common.exception.UnknownException
 import com.arctouch.codechallenge.base.di.base
 import com.arctouch.codechallenge.base.presentation.views.EmptyView
 import com.arctouch.codechallenge.base.presentation.views.ErrorView
+import com.arctouch.codechallenge.base.presentation.views.SkeletonView
 import io.reactivex.disposables.CompositeDisposable
 import timber.log.Timber
 
@@ -20,6 +21,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
     val compositeDisposable by lazy { CompositeDisposable() }
 
+    open val baseSkeletonView: SkeletonView? = null
     open val baseErrorView: ErrorView? = null
     open val baseEmptyView: EmptyView? = null
 
@@ -89,6 +91,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
     open fun loading(isLoading: Boolean) {
         if (isLoading) hideEmptyView()
+        baseSkeletonView?.apply { if (isLoading) show() else hide() }
     }
 
     open fun toggleEmptyView(items: List<Any>) {

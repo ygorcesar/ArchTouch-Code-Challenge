@@ -74,6 +74,9 @@ dependencies {
     implementation(commonDependencies.glide) { exclude group: "com.android.support" }
     kapt commonDependencies.glideProcessor
 
+    // Skeleton and ShimmerLayout for loading on screens
+    implementation commonDependencies.shimmer
+
     // Timber
     implementation developmentDependencies.timber
 

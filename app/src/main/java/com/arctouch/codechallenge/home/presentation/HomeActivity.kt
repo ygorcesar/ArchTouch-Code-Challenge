@@ -10,12 +10,12 @@ import com.arctouch.codechallenge.base.common.exception.AppException
 import com.arctouch.codechallenge.base.data.ViewState
 import com.arctouch.codechallenge.base.data.getList
 import com.arctouch.codechallenge.base.extensions.addToComposite
-import com.arctouch.codechallenge.base.extensions.isVisible
 import com.arctouch.codechallenge.base.extensions.observe
 import com.arctouch.codechallenge.base.extensions.provideViewModel
 import com.arctouch.codechallenge.base.presentation.BaseActivity
 import com.arctouch.codechallenge.base.presentation.views.EmptyView
 import com.arctouch.codechallenge.base.presentation.views.ErrorView
+import com.arctouch.codechallenge.base.presentation.views.SkeletonView
 import com.arctouch.codechallenge.home.viewmodel.HomeViewModel
 import com.arctouch.codechallenge.manager.NavigationManager
 import com.arctouch.codechallenge.movie.model.Movie
@@ -29,6 +29,7 @@ class HomeActivity : BaseActivity() {
 
     override val layoutResId = R.layout.home_activity
 
+    override val baseSkeletonView: SkeletonView? get() = skeletonView
     override val baseErrorView: ErrorView? get() = errorView.apply { setActionButtonClick { getMovies() } }
     override val baseEmptyView: EmptyView? get() = emptyView
 
@@ -143,7 +144,7 @@ class HomeActivity : BaseActivity() {
     override fun loading(isLoading: Boolean) {
         when {
             homeSwipeToRefresh.isRefreshing -> homeSwipeToRefresh.isRefreshing = isLoading
-            homeAdapter.getItems().isEmpty() -> progressBar.isVisible = isLoading
+            homeAdapter.getItems().isEmpty() -> super.loading(isLoading)
             else -> recyclerView?.loading = isLoading
         }
     }
