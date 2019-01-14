@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="CustomRecyclerView">
+        <attr name="crv_padding_top" format="dimension"/>
+        <attr name="crv_padding_left" format="dimension"/>
+        <attr name="crv_padding_right" format="dimension"/>
+        <attr name="crv_padding_bottom" format="dimension"/>
+    </declare-styleable>
+
+    <declare-styleable name="SkeletonView">
+        <attr name="skeleton_layout" format="reference"/>
+    </declare-styleable>
+
+</resources>

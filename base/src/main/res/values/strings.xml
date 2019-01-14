@@ -1,0 +1,10 @@
+<resources>
+
+    <string name="action_error_ops">Ooops!</string>
+    <string name="error_occurred_some_problem">Ocorreu algum problema =S</string>
+    <string name="error_try_again">Tentar novamente</string>
+    <string name="error_no_internet_connection_subtitle">você está sem conexão com a internet, verifique sua rede e tente novamente</string>
+
+    <string name="empty_view_no_information_found">Nenhuma informação encontrada...</string>
+
+</resources>
