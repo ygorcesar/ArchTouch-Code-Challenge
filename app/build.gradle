@@ -13,7 +13,14 @@ android {
     def androidConfig = rootProject.ext.android
     def endpoints = rootProject.ext.endpoints
 
-    compileSdkVersion 27
+    signingConfigs {
+        release {
+            keyAlias 'arctouchapp'
+            keyPassword 'arctouch'
+            storeFile file('../keystore/arctouch.jks')
+            storePassword 'arctouch'
+        }
+    }
 
     compileSdkVersion androidConfig.compileSdkVersion
     buildToolsVersion androidConfig.buildToolsVersion
@@ -87,6 +94,7 @@ android {
             shrinkResources true
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
 
             buildConfigField("String", "API_URL", endpoints.prod)
             buildConfigField("String", "API_KEY", apiKey.prod)
